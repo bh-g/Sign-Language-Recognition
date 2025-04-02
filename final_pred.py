@@ -2,12 +2,10 @@
 import numpy as np
 import math
 import cv2
-
 import os, sys
 import traceback
 import pyttsx3
 sys.path.insert(0, r'E:/mediapipe-0.8.8')
-
 import mediapipe as mp
 mp_hands = mp.solutions.hands
 print("MediaPipe Hands module loaded:", mp_hands)
@@ -22,7 +20,6 @@ hd2 = HandDetector(maxHands=1)
 import tkinter as tk
 from PIL import Image, ImageTk
 import h5py
-
 offset=29
 
 os.environ["THEANO_FLAGS"] = "device=cuda, assert_no_cpu_op=True"
@@ -42,6 +39,8 @@ class Application:
         self.speak_engine.setProperty("rate",100)
         voices=self.speak_engine.getProperty("voices")
         self.speak_engine.setProperty("voice",voices[0].id)
+
+
         # self.json_file = open("model_new.json", "r")
         # self.model_json = self.json_file.read()
         # self.json_file.close()
@@ -111,9 +110,9 @@ class Application:
         self.b4 = tk.Button(self.root)
         self.b4.place(x=990, y=700)
 
-        # self.speak = tk.Button(self.root)
-        # self.speak.place(x=1305, y=630)
-        # self.speak.config(text="Speak", font=("Courier", 20), wraplength=100, command=self.speak_fun)
+        self.speak = tk.Button(self.root)
+        self.speak.place(x=1305, y=630)
+        self.speak.config(text="Speak", font=("Courier", 20), wraplength=100, command=self.speak_fun)
 
         self.clear = tk.Button(self.root)
         self.clear.place(x=1205, y=630)
@@ -243,86 +242,7 @@ class Application:
                             self.b4.config(text=self.word4, font=("Courier", 20), wraplength=825,  command=self.action4)
 
                 self.panel5.config(text=self.str, font=("Courier", 30), wraplength=1025)
-        # except Exception:
-        #     print(Exception.__traceback__)
-        #     hands = hd.findHands(cv2image, draw=False, flipType=True)
-        #     cv2image_copy=np.array(cv2image)
-        #     cv2image = cv2.cvtColor(cv2image, cv2.COLOR_BGR2RGB)
-        #     self.current_image = Image.fromarray(cv2image)
-        #     imgtk = ImageTk.PhotoImage(image=self.current_image)
-        #     self.panel.imgtk = imgtk
-        #     self.panel.config(image=imgtk)
-
-        #     if hands:
-        #         # #print(" --------- lmlist=",hands[1])
-        #         hand = hands[0]
-        #         map=hand[0]
-        #         x, y, w, h = map['bbox']
-        #         image = cv2image_copy[y - offset:y + h + offset, x - offset:x + w + offset]
-
-        #         white = cv2.imread("E:\Sign-Language-To-Text-and-Speech-Conversion-master\Sign-Language-To-Text-and-Speech-Conversion-master\white.jpg")
-        #         # img_final=img_final1=img_final2=0
-
-        #         handz = hd2.findHands(image, draw=False, flipType=True)
-        #         print(" ", self.ccc)
-        #         self.ccc += 1
-        #         if handz:
-        #             hand = handz[0]
-        #             map= hand[0]
-        #             self.pts = map['lmList']
-        #             # x1,y1,w1,h1=hand['bbox']
-
-        #             os = ((400 - w) // 2) - 15
-        #             os1 = ((400 - h) // 2) - 15
-        #             for t in range(0, 4, 1):
-        #                 cv2.line(white, (self.pts[t][0] + os, self.pts[t][1] + os1), (self.pts[t + 1][0] + os, self.pts[t + 1][1] + os1),
-        #                          (0, 255, 0), 3)
-        #             for t in range(5, 8, 1):
-        #                 cv2.line(white, (self.pts[t][0] + os, self.pts[t][1] + os1), (self.pts[t + 1][0] + os, self.pts[t + 1][1] + os1),
-        #                          (0, 255, 0), 3)
-        #             for t in range(9, 12, 1):
-        #                 cv2.line(white, (self.pts[t][0] + os, self.pts[t][1] + os1), (self.pts[t + 1][0] + os, self.pts[t + 1][1] + os1),
-        #                          (0, 255, 0), 3)
-        #             for t in range(13, 16, 1):
-        #                 cv2.line(white, (self.pts[t][0] + os, self.pts[t][1] + os1), (self.pts[t + 1][0] + os, self.pts[t + 1][1] + os1),
-        #                          (0, 255, 0), 3)
-        #             for t in range(17, 20, 1):
-        #                 cv2.line(white, (self.pts[t][0] + os, self.pts[t][1] + os1), (self.pts[t + 1][0] + os, self.pts[t + 1][1] + os1),
-        #                          (0, 255, 0), 3)
-        #             cv2.line(white, (self.pts[5][0] + os, self.pts[5][1] + os1), (self.pts[9][0] + os, self.pts[9][1] + os1), (0, 255, 0),
-        #                      3)
-        #             cv2.line(white, (self.pts[9][0] + os, self.pts[9][1] + os1), (self.pts[13][0] + os, self.pts[13][1] + os1), (0, 255, 0),
-        #                      3)
-        #             cv2.line(white, (self.pts[13][0] + os, self.pts[13][1] + os1), (self.pts[17][0] + os, self.pts[17][1] + os1),
-        #                      (0, 255, 0), 3)
-        #             cv2.line(white, (self.pts[0][0] + os, self.pts[0][1] + os1), (self.pts[5][0] + os, self.pts[5][1] + os1), (0, 255, 0),
-        #                      3)
-        #             cv2.line(white, (self.pts[0][0] + os, self.pts[0][1] + os1), (self.pts[17][0] + os, self.pts[17][1] + os1), (0, 255, 0),
-        #                      3)
-
-        #             for i in range(21):
-        #                 cv2.circle(white, (self.pts[i][0] + os, self.pts[i][1] + os1), 2, (0, 0, 255), 1)
-
-        #             res=white
-        #             self.predict(res)
-
-        #             self.current_image2 = Image.fromarray(res)
-
-        #             imgtk = ImageTk.PhotoImage(image=self.current_image2)
-
-        #             self.panel2.imgtk = imgtk
-        #             self.panel2.config(image=imgtk)
-
-        #             self.panel3.config(text=self.current_symbol, font=("Courier", 30))
-
-        #             #self.panel4.config(text=self.word, font=("Courier", 30))
-
-
-
-        #             self.b1.config(text=self.word1, font=("Courier", 20), wraplength=825, command=self.action1)
-        #             self.b2.config(text=self.word2, font=("Courier", 20), wraplength=825,  command=self.action2)
-        #             self.b3.config(text=self.word3, font=("Courier", 20), wraplength=825,  command=self.action3)
-        #             self.b4.config(text=self.word4, font=("Courier", 20), wraplength=825,  command=self.action4)
+                # self.speak_fun()
 
             self.panel5.config(text=self.str, font=("Courier", 30), wraplength=1025)
         except Exception:
@@ -339,7 +259,7 @@ class Application:
         last_idx = len(self.str)
         self.str = self.str[:idx_word]
         self.str = self.str + self.word1.upper()
-
+        self.speak_fun()
 
     def action2(self):
         idx_space = self.str.rfind(" ")
@@ -348,7 +268,7 @@ class Application:
         self.str=self.str[:idx_word]
         self.str=self.str+self.word2.upper()
         #self.str[idx_word:last_idx] = self.word2
-
+        self.speak_fun()
 
     def action3(self):
         idx_space = self.str.rfind(" ")
@@ -356,7 +276,7 @@ class Application:
         last_idx = len(self.str)
         self.str = self.str[:idx_word]
         self.str = self.str + self.word3.upper()
-
+        self.speak_fun()
 
 
     def action4(self):
@@ -365,11 +285,14 @@ class Application:
         last_idx = len(self.str)
         self.str = self.str[:idx_word]
         self.str = self.str + self.word4.upper()
-
+        self.speak_fun()
 
     def speak_fun(self):
         self.speak_engine.say(self.str)
         self.speak_engine.runAndWait()
+      
+
+        
 
 
     def clear_fun(self):
@@ -833,3 +756,4 @@ class Application:
 print("Starting Application...")
 
 (Application()).root.mainloop()
+ 
