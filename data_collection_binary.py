@@ -6,8 +6,6 @@ import os, os.path
 from keras.models import load_model
 import traceback
 
-
-
 #model = load_model('C:\\Users\\devansh raval\\PycharmProjects\\pythonProject\\cnn9.h5')
 
 capture = cv2.VideoCapture(0)

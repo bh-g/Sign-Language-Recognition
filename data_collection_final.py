@@ -4,11 +4,11 @@ import numpy as np
 import os as oss
 import traceback
 
-capture = cv2.VideoCapture(1)
+capture = cv2.VideoCapture(0)
 hd = HandDetector(maxHands=1)
 hd2 = HandDetector(maxHands=1)
 
-count = len(oss.listdir("dataset/raw/A/"))
+count = len(oss.listdir("dataset/A"))
 c_dir = 'A'
 
 offset = 15
@@ -17,11 +17,10 @@ flag=False
 suv=0
 
 white=np.ones((400,400),np.uint8)*255
-print(type(white))
 cv2.imwrite("white.jpg",white)
 
 
-""" while True:
+while True:
     try:
         _, frame = capture.read()
         frame = cv2.flip(frame, 1)
@@ -30,13 +29,15 @@ cv2.imwrite("white.jpg",white)
 
         if hands:
             hand = hands[0]
-            x, y, w, h = hand['bbox']
-            image = np.array( frame[y - offset:y + h + offset, x - offset:x + w + offset])
+            handmap = hand[0]
+            x, y, w, h = handmap['bbox']
+            image =np.array( frame[y - offset:y + h + offset, x - offset:x + w + offset])
 
             handz,imz = hd2.findHands(image, draw=True, flipType=True)
             if handz:
                 hand = handz[0]
-                pts = hand['lmList']
+                handmap = hand[0]
+                pts = handmap['lmList']
                 # x1,y1,w1,h1=hand['bbox']
                 os=((400-w)//2)-15
                 os1=((400-h)//2)-15
@@ -80,7 +81,7 @@ cv2.imwrite("white.jpg",white)
             if ord(c_dir)==ord('Z')+1:
                 c_dir='A'
             flag = False
-            count = len(oss.listdir("AtoZ_3.0/" + (c_dir) + "/"))
+            count = len(oss.listdir("dataset" + (c_dir) + "/"))
 
         if interrupt & 0xFF == ord('a'):
             if flag:
@@ -95,7 +96,7 @@ cv2.imwrite("white.jpg",white)
             if suv==180:
                 flag=False
             if step%3==0:
-                cv2.imwrite("dataset/raw/" + (c_dir) + "/" + str(count) + ".jpg",
+                cv2.imwrite("dataset" + (c_dir) + "/" + str(count) + ".jpg",
                             skeleton1)
 
                 count += 1
@@ -108,4 +109,4 @@ cv2.imwrite("white.jpg",white)
         print("==",traceback.format_exc() )
 
 capture.release()
-cv2.destroyAllWindows() """
+cv2.destroyAllWindows()
