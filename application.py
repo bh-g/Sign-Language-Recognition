@@ -4,7 +4,6 @@ import math
 import cv2
 from gtts import gTTS
 import os
-#import pygame
 
 import os, sys
 import traceback
@@ -111,8 +110,8 @@ class Application:
         self.language_var.set("English")  # default value
 
         self.language_menu = OptionMenu(self.root, self.language_var, "English", "Hindi", "Tamil")
-        self.language_menu.config(font=("Courier", 14))
-        self.language_menu.place(x=1305, y=5)
+        self.language_menu.config(font=("Courier", 20, ), wraplength=120)
+        self.language_menu.place(x=1285, y=10)
 
         self.clear = tk.Button(self.root)
         self.clear.place(x=1205, y=630)
