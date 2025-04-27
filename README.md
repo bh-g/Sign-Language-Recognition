@@ -28,7 +28,7 @@ Link: [https://drive.google.com/file/d/1CP8VoFTIysbxXgW-vwRwSsdX5K60UDAe/view?us
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/project-name.git cd project-name pip install -r requirements.txt python app.py 
+git clone https://github.com/bh-g/Sign-Language-Recognition.git 
 ```
 
 ### 2. Create and activate a virtual environment (optional but recommended)
