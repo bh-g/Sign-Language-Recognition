@@ -1,4 +1,4 @@
-# Sign Language Recognition
+# Real-Time Sign Language to Speech Conversion on Edge Devices: A Jetson Nano Implementation 
 
 This project is a real-time American Sign Language (ASL) fingerspelling recognition system. It focuses on recognizing alphabet gestures using deep learning techniques like spatio-temporal feature extraction and attention mechanisms.
 
